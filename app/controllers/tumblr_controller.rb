@@ -13,6 +13,7 @@ class TumblrController < ApplicationController
 	end
 
 	def callback
+		@request_token = OAuth::RequestToken.new(UsersController.consumer, session[:request_token], session[:request_token_secret])
 		@access_token = @request_token.get_access_token({:oauth_verifier => params[:oauth_verifier]})
 		tumblr_user = Tumblr.new(:access_token => @access_token.token)
 		tumblr_user.save
