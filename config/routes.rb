@@ -1,9 +1,15 @@
 Twit2tumb::Application.routes.draw do
+
   get "users/new"
 
   get "static_pages/home"
 
   get "static_pages/help"
+
+  match '/tumblr/oauth',          to: 'tumblr#oauth'
+  match '/tumblr/oauth/callback', to: 'tumblr#callback'
+
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
