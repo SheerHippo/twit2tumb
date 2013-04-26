@@ -1,3 +1,3 @@
 class Tumblr < ActiveRecord::Base
-  attr_accessible :access_token, :user_id
+  attr_accessible :oauth_token, :oauth_token_secret, :user_id
 end
