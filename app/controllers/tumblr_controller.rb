@@ -72,7 +72,7 @@ class TumblrController < ApplicationController
 			{
 				:oauth_consumer_key 	=> @key,
 				:oauth_nonce			=> nonce,
-				:oauth_signature_method => "HMAC-SHA1"
+				:oauth_signature_method => "HMAC-SHA1",
 				:oauth_timestamp		=> timestamp,
 				:oauth_version			=> "1.0"
 			}.merge(hash)
