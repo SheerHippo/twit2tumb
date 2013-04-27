@@ -9,7 +9,7 @@ class TumblrController < ApplicationController
 
 	@key      = "Sr6aNdQZveayHCvkCKH0RPN9mULpinm1gTdJPcbXcujOLHawaV"
 	@secret   = "Nr1LgaoTSa9BH8ZlPEonwYC78PnVc1fYdHT0DoswuWQXxGdCzE"
-	@callback = 
+	@callback = "localhost:3000/tumblr/oauth/callback"
 
 	@base_url 			 = "https://www.tumblr.com"
 	@request_token_url   = "/oauth/request_token"
@@ -26,7 +26,7 @@ class TumblrController < ApplicationController
 	end
 
 	def oauth
-		@request_token = TumblrController.consumer.get_request_token(:oauth_callback => "localhost:3000/tumblr/oauth/callback")
+		@request_token = TumblrController.consumer.get_request_token(:oauth_callback => @callback)
 		session[:request_token] = @request_token.token
 		session[:request_token_secret] = @request_token.secret
 		#Send to tumblr.com to authorize
