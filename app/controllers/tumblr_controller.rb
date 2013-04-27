@@ -22,7 +22,7 @@ class TumblrController < ApplicationController
 							 :request_token_path => @request_token_url,
 							 :access_token_path  => @access_token_url,
 							 :authorize_path 	 => @authorize_token_url, 
-							 :http_method 		 => :post} )o
+							 :http_method 		 => :post} )
 	end
 
 	def oauth
