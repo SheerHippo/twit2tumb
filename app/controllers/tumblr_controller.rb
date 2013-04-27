@@ -43,9 +43,10 @@ class TumblrController < ApplicationController
 
 	def post
 		url = "api.tumblr.com/v2/blog/sheerhippo.tumblr.com/post"
+		user = Tumblr.find_by_user_id(5)
 
-		authentication, params = generate_authentication_hash({ :oauth_token => Tumblr.find_by_user_id(5).oauth_token }), { :alt => "jsonc" }
-      	authentication.merge! oauth_signature(secret_string(@secret, Tumblr.find_by_user_id(5).oauth_secret), method, url, authentication, params)
+		authentication, params = generate_authentication_hash({ :oauth_token => user.oauth_token }), { :alt => "jsonc" }
+      	authentication.merge! oauth_signature(secret_string(@secret, user.oauth_secret), method, url, authentication, params)
 
 		data = {
 			:type   => "text",
