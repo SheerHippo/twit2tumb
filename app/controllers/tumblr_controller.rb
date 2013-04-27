@@ -79,7 +79,7 @@ class TumblrController < ApplicationController
 		end
 
 		def nonce
-			Digest::MD5.hexidigest(rand.to_s)
+			Digest::MD5.hexdigest(rand.to_s)
 		end
 
 		def timestamp
