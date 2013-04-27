@@ -68,7 +68,7 @@ class TumblrController < ApplicationController
 	end
 
 	private
-		def authentication_hash(hash = {})
+		def generate_authentication_hash(hash = {})
 			{
 				:oauth_consumer_key 	=> @key,
 				:oauth_nonce			=> nonce,
