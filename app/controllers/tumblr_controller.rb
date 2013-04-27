@@ -48,13 +48,14 @@ class TumblrController < ApplicationController
       	authentication.merge! oauth_signature(secret_string(@secret, Tumblr.find_by_user_id(5).oauth_secret), method, url, authentication, params)
 
 		data = {
-			:type   => "text"
-			:state  => "draft"
-			:tags   => "tags, tags"
-			:tweet  => "off"
-			:format => "html"
+			:type   => "text",
+			:state  => "draft",
+			:tags   => "tags, tags",
+			:tweet  => "off",
+			:format => "html",
 			:body 	=> "Testing"
 		}
+
 		body = { :data => data }.to_json
 
 		headers = {
