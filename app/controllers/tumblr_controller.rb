@@ -22,7 +22,7 @@ class TumblrController < ApplicationController
 							 :request_token_path => @request_token_url,
 							 :access_token_path  => @access_token_url,
 							 :authorize_path 	 => @authorize_token_url, 
-							 :http_method 		 => :post} )
+							 :http_method 		 => :post} )o
 	end
 
 	def oauth
@@ -110,30 +110,30 @@ class TumblrController < ApplicationController
   			"OAuth " + params.sort.map { |key, value| "#{key}=\"#{CGI.escape(value)}\"" }.join(", ")
 		end
 
-		def request(method, url, body, headers = {})
-  			hash = if method == :post
-    		{
-      			"Accept" => "*/*",
-      			"Content-Type" => "application/x-www-form-urlencoded"
-    		}
-  			else
-    			{}
-  			end
+		# def request(method, url, body, headers = {})
+  # 			hash = if method == :post
+  #   		{
+  #     			"Accept" => "*/*",
+  #     			"Content-Type" => "application/x-www-form-urlencoded"
+  #   		}
+  # 			else
+  #   			{}
+  # 			end
 
-  			Excon.send(method, url, :body => body, :headers => hash.merge(headers)) # Hit that server yo.
-		end
+  # 			Excon.send(method, url, :body => body, :headers => hash.merge(headers)) # Hit that server yo.
+		# end
 
-		def api_call(url, method = :get, data = "")
-   			authentication, params = generate_authentication_hash({ :oauth_token => @access_token }), { :alt => "jsonc" }
-   			authentication.merge! oauth_signature(secret_string(@secret, Tumblr.find_by_user_id(5).oauth_secret), method, url, authentication, params)
+		# def api_call(url, method = :get, data = "")
+  #  			authentication, params = generate_authentication_hash({ :oauth_token => @access_token }), { :alt => "jsonc" }
+  #  			authentication.merge! oauth_signature(secret_string(@secret, Tumblr.find_by_user_id(5).oauth_secret), method, url, authentication, params)
  
-   			headers = {
-     			"Authorization" => authorization_string(authentication),
-     			"GData-Version" => "2", # http://code.google.com/apis/calendar/data/2.0/developers_guide_protocol.html#Versioning
-     			"Accept" => "application/json"
-   			}
-   			headers["Content-Type"] = "application/json" if method == :post
+  #  			headers = {
+  #    			"Authorization" => authorization_string(authentication),
+  #    			"GData-Version" => "2", # http://code.google.com/apis/calendar/data/2.0/developers_guide_protocol.html#Versioning
+  #    			"Accept" => "application/json"
+  #  			}
+  #  			headers["Content-Type"] = "application/json" if method == :post
  
-   			request(method, url + "?" + normalize_parameters(params), data, headers)
- 		end
+  #  			request(method, url + "?" + normalize_parameters(params), data, headers)
+ 	# 	end
 end
