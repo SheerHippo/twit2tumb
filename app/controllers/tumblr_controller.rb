@@ -1,7 +1,12 @@
 class TumblrController < ApplicationController
 
 	def self.consumer
-		OAuth::Consumer.new("Sr6aNdQZveayHCvkCKH0RPN9mULpinm1gTdJPcbXcujOLHawaV", "Nr1LgaoTSa9BH8ZlPEonwYC78PnVc1fYdHT0DoswuWQXxGdCzE", {:site=>"https://www.tumblr.com",:request_token_path => "/oauth/request_token",:access_token_path => "/oauth/access_token",:authorize_path => "/oauth/authorize", :http_method => :post} )
+		OAuth::Consumer.new("Sr6aNdQZveayHCvkCKH0RPN9mULpinm1gTdJPcbXcujOLHawaV", "Nr1LgaoTSa9BH8ZlPEonwYC78PnVc1fYdHT0DoswuWQXxGdCzE", 
+							{:site =>"https://www.tumblr.com",
+							 :request_token_path => "/oauth/request_token",
+							 :access_token_path => "/oauth/access_token",
+							 :authorize_path => "/oauth/authorize", 
+							 :http_method => :post} )
 	end
 
 	def oauth
