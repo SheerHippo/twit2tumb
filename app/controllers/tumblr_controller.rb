@@ -49,7 +49,7 @@ class TumblrController < ApplicationController
 
 		data = {
 			:type   => "text"
-			:state  => "published"
+			:state  => "draft"
 			:tags   => "tags, tags"
 			:tweet  => "off"
 			:format => "html"
