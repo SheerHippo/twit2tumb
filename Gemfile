@@ -3,6 +3,9 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.13'
 gem 'oauth', '0.4.7'
 gem 'bcrypt-ruby', '3.0.1'
+gem 'excon', '0.20.1'
+gem 'json', '1.7.7'
+
 
 group :development, :test do
   gem 'sqlite3', '1.3.5'
