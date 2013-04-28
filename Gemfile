@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+source 'http://chneukirchen.org/releases/gems/'
 
 gem 'rails', '3.2.13'
 gem 'oauth', '0.4.7'
@@ -6,6 +7,7 @@ gem 'bcrypt-ruby', '3.0.1'
 gem 'excon', '0.20.1'
 gem 'json', '1.7.7'
 gem 'sinatra', :git => 'https://github.com/sinatra/sinatra.git'
+gem 'rack'
 
 
 group :development, :test do
