@@ -41,9 +41,13 @@ class TumblrController < ApplicationController
 		redirect_to(root_path)
 	end
 
+	def show
+		@user = Tumblr.find_by_user_id(5)
+	end
+
 	def post
 		url = "api.tumblr.com/v2/blog/sheerhippo.tumblr.com/post"
-		user = Tumblr.find_by_user_id(5)
+		@user = Tumblr.find_by_user_id(5)
 		method = :post
 
 		authentication, params = generate_authentication_hash({ :oauth_token => user.oauth_token }), { :alt => "jsonc" }
