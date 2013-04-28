@@ -44,6 +44,7 @@ class TumblrController < ApplicationController
 	def post
 		url = "api.tumblr.com/v2/blog/sheerhippo.tumblr.com/post"
 		user = Tumblr.find_by_user_id(5)
+		method = :post
 
 		authentication, params = generate_authentication_hash({ :oauth_token => user.oauth_token }), { :alt => "jsonc" }
       	authentication.merge! oauth_signature(secret_string(@secret, user.oauth_token_secret), method, url, authentication, params)
@@ -65,7 +66,7 @@ class TumblrController < ApplicationController
         	# "Accept" => "application/json"
       	}
 
-		Excon.send({:method => [:post]}, url, :body => body, :headers => hash.merge(headers))
+		Excon.send(method, url, :body => body, :headers => hash.merge(headers))
 	end
 
 	private
