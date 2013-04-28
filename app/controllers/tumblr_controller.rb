@@ -108,7 +108,7 @@ class TumblrController < ApplicationController
    			params.sort.inject("") { |str, (key, value)| str + "#{CGI.escape(key.to_s)}=#{CGI.escape(value)}&" }[0..-2]
  		end
  
- 		def secret_string(secret, token_secret = "")
+ 		def secret_string(secret, token_secret)
    			secret + token_secret
  		end
 
