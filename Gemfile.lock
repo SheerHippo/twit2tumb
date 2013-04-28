@@ -75,6 +75,8 @@ GEM
     rack (1.4.5)
     rack-cache (1.2)
       rack (>= 0.4)
+    rack-protection (1.5.0)
+      rack
     rack-ssl (1.3.3)
       rack
     rack-test (0.6.2)
@@ -121,6 +123,10 @@ GEM
       multi_json (~> 1.0)
       rubyzip
       websocket (~> 1.0.4)
+    sinatra (1.3.6)
+      rack (~> 1.4)
+      rack-protection (~> 1.3)
+      tilt (~> 1.3, >= 1.3.3)
     sprockets (2.2.2)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -156,5 +162,6 @@ DEPENDENCIES
   rails (= 3.2.13)
   rspec-rails (= 2.11.0)
   sass-rails (= 3.2.5)
+  sinatra
   sqlite3 (= 1.3.5)
   uglifier (= 1.2.3)
