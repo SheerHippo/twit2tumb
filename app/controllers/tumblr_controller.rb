@@ -50,8 +50,8 @@ class TumblrController < ApplicationController
 		@user = Tumblr.find_by_user_id(5)
 		method = :post
 
-		authentication, params = generate_authentication_hash({ :oauth_token => user.oauth_token }), { :alt => "jsonc" }
-      	authentication.merge! oauth_signature(secret_string(@secret, user.oauth_token_secret), method, url, authentication, params)
+		authentication, params = generate_authentication_hash({ :oauth_token => @user.oauth_token }), { :alt => "jsonc" }
+      	authentication.merge! oauth_signature(secret_string(@secret, @user.oauth_token_secret), method, url, authentication, params)
 
 		data = {
 			:type   => "text",
