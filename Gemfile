@@ -5,6 +5,7 @@ gem 'oauth', '0.4.7'
 gem 'bcrypt-ruby', '3.0.1'
 gem 'excon', '0.20.1'
 gem 'json', '1.7.7'
+gem 'sinatra', :git => 'https://github.com/sinatra/sinatra.git'
 
 
 group :development, :test do

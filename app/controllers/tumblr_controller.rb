@@ -4,6 +4,7 @@ require "base64"
 require "openssl"
 require "digest/hmac"
 require "json/pure"
+require "sinatra"
 
 class TumblrController < ApplicationController
 
