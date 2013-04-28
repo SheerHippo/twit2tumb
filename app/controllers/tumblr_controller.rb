@@ -36,7 +36,7 @@ class TumblrController < ApplicationController
 	def callback
 		@request_token = OAuth::RequestToken.new(TumblrController.consumer, session[:request_token], session[:request_token_secret])
 		@access_token = @request_token.get_access_token({:oauth_verifier => params[:oauth_verifier]})
-		tumblr_user = Tumblr.new({:user_id => 5, :oauth_token => @access_token.token, :oauth_secret => @access_token.oauth_verifier})
+		tumblr_user = Tumblr.new({:user_id => 5, :oauth_token => @access_token.token, :oauth_secret => @access_token.secret})
 		tumblr_user.save
 		redirect_to(root_path)
 	end
