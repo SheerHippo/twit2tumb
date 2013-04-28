@@ -66,7 +66,7 @@ class TumblrController < ApplicationController
         	# "Accept" => "application/json"
       	}
 
-		Excon.send(method, url, :body => body, :headers => hash.merge(headers))
+		Excon.send(method, url + "?" + normalize_parameters(params), :body => body, :headers => hash.merge(headers))
 	end
 
 	private
