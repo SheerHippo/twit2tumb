@@ -4,7 +4,7 @@ Twit2tumb::Application.routes.draw do
   match '/tumblr/oauth',          to: 'tumblr#oauth'
   match '/tumblr/oauth/callback', to: 'tumblr#callback'
   match '/tumblr/post',           to: 'tumblr#post'
-  match '/tumblr/user'            to: 'tumblr#show'
+  match '/tumblr/user',           to: 'tumblr#show'
 
 
 
