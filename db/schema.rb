@@ -11,9 +11,9 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130429021844) do
+ActiveRecord::Schema.define(:version => 20130429185605) do
 
-  create_table "tumblrs", :force => true do |t|
+  create_table "tumblogs", :force => true do |t|
     t.integer  "user_id"
     t.string   "oauth_token"
     t.string   "oauth_secret"

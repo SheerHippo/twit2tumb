@@ -1,6 +1,6 @@
-class CreateTumblrs < ActiveRecord::Migration
+class CreateTumblogs < ActiveRecord::Migration
   def change
-    create_table :tumblrs do |t|
+    create_table :tumblogs do |t|
       t.integer :user_id
       t.string :oauth_token
       t.string :oauth_secret
