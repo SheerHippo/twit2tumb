@@ -48,7 +48,7 @@ class TumblrController < ApplicationController
 
 	def post
 		@user = Tumblr.find_by_user_id(5)
-		client = Tumblr::Client.new(:consumer_key => @key, :consumer_secret => @secret, :oauth_token => @user.oauth_token, :oauth_token_secret = @user.oauth_secret)
+		client = Tumblr::Client.new(:consumer_key => @key, :consumer_secret => @secret, :oauth_token => @user.oauth_token, :oauth_token_secret => @user.oauth_secret)
 		client.text(:state => "draft", :body => "test")
 		# url = "api.tumblr.com/v2/blog/sheerhippo.tumblr.com/post"
 		# @user = Tumblr.find_by_user_id(5)
