@@ -1,10 +1,10 @@
 Twit2tumb::Application.routes.draw do
   root to: 'static_pages#home'
 
-  match '/tumblr/oauth',          to: 'tumblr#oauth'
-  match '/tumblr/oauth/callback', to: 'tumblr#callback'
-  match '/tumblr/post',           to: 'tumblr#post'
-  match '/tumblr/user',           to: 'tumblr#show'
+  match '/tumblr/oauth',          to: 'tumblog#oauth'
+  match '/tumblr/oauth/callback', to: 'tumblog#callback'
+  match '/tumblr/post',           to: 'tumblog#post'
+  match '/tumblr/user',           to: 'tumblog#show'
 
 
 
