@@ -37,7 +37,7 @@ class TumblrController < ApplicationController
 	def callback
 		@request_token = OAuth::RequestToken.new(TumblrController.consumer, session[:request_token], session[:request_token_secret])
 		@access_token = @request_token.get_access_token({:oauth_verifier => params[:oauth_verifier]})
-		tumblr_user = Tumblr.new({:user_id => 5, :oauth_token => @access_token.token, :oauth_token_secret => @access_token.secret})
+		tumblr_user = Tumblr.new({:user_id => 5, :oauth_token => @access_token.token, :oauth_secret => @access_token.secret})
 		tumblr_user.save
 		redirect_to(root_path)
 	end
@@ -47,34 +47,34 @@ class TumblrController < ApplicationController
 	end
 
 	def post
-		url = "api.tumblr.com/v2/blog/sheerhippo.tumblr.com/post"
 		@user = Tumblr.find_by_user_id(5)
-		cons_secret = @secret
-		user_secret = @user.oauth_token_secret
-		user_token = @user.oauth_token
-		method = :post
+		client = Tumblr::Client.new(:consumer_key => @key, :consumer_secret => @secret, :oauth_token => @user.oauth_token, :oauth_token_secret = @user.oauth_secret)
+		client.text(:state => "draft", :body => "test")
+		# url = "api.tumblr.com/v2/blog/sheerhippo.tumblr.com/post"
+		# @user = Tumblr.find_by_user_id(5)
+		# method = :post
 
-		authentication, params = generate_authentication_hash({ :oauth_token => user_token }), { :alt => "jsonc" }
-      	authentication.merge! oauth_signature(secret_string(cons_secret, user_secret), method, url, authentication, params)
+		# authentication = generate_authentication_hash({ :oauth_token => @user.oauth_token })
+  #     	authentication.merge! oauth_signature(secret_string(@secret, @user.oauth_secret), method, url, authentication)
 
-		data = {
-			:type   => "text",
-			:state  => "draft",
-			:tags   => "tags, tags",
-			:tweet  => "off",
-			:format => "html",
-			:body 	=> "Testing"
-		}
+		# data = {
+		# 	:type   => "text",
+		# 	:state  => "draft",
+		# 	:tags   => "tags, tags",
+		# 	:tweet  => "off",
+		# 	:format => "html",
+		# 	:body 	=> "Testing"
+		# }
 
-		body = { :data => data }.to_json
+		# body = { :data => data }.to_json
 
-		headers = {
-        	"Authorization" => authorization_string(authentication),
-        	# "GData-Version" => "2", # http://code.google.com/apis/calendar/data/2.0/developers_guide_protocol.html#Versioning
-        	# "Accept" => "application/json"
-      	}
+		# headers = {
+  #       	"Authorization" => authorization_string(authentication),
+  #       	# "GData-Version" => "2", # http://code.google.com/apis/calendar/data/2.0/developers_guide_protocol.html#Versioning
+  #       	# "Accept" => "application/json"
+  #     	}
 
-		Excon.send(method, url + "?" + normalize_parameters(params), :body => body, :headers => hash.merge(headers))
+		# Excon.send(method, url, :body => body, :headers => hash.merge(headers))
 	end
 
 	private
@@ -96,8 +96,8 @@ class TumblrController < ApplicationController
 			Time.now.to_i.to_s
 		end
 
-		def oauth_signature(secret, method, url, authentication, params = {})
- 			{ :oauth_signature => sign(secret, generate_signature_base(method, url, normalize_parameters(authentication.merge(params)))) }
+		def oauth_signature(secret, method, url, authentication)
+ 			{ :oauth_signature => sign(secret, generate_signature_base(method, url, normalize_parameters(authentication))) }
  		end
 
   		def generate_signature_base(method, url, param_string)
@@ -112,7 +112,7 @@ class TumblrController < ApplicationController
    			params.sort.inject("") { |str, (key, value)| str + "#{CGI.escape(key.to_s)}=#{CGI.escape(value)}&" }[0..-2]
  		end
  
- 		def secret_string(secret, token_secret)
+ 		def secret_string(secret, token_secret = "")
    			"#{secret}&#{token_secret}"
  		end
 
