@@ -1,3 +1,5 @@
+require 'tumblr_client'
+
 class TumblogController < ApplicationController
 
 	@key      = "Sr6aNdQZveayHCvkCKH0RPN9mULpinm1gTdJPcbXcujOLHawaV"
