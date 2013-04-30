@@ -1,11 +1,3 @@
-require "excon"
-require "cgi"
-require "base64"
-require "openssl"
-require "digest/hmac"
-require "json/pure"
-require "sinatra"
-
 class TumblogController < ApplicationController
 
 	@key      = "Sr6aNdQZveayHCvkCKH0RPN9mULpinm1gTdJPcbXcujOLHawaV"
