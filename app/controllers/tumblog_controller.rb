@@ -50,6 +50,7 @@ class TumblogController < ApplicationController
 		@user = Tumblog.find_by_user_id(5)
 		client = Tumblr::Client.new(:consumer_key => @key, :consumer_secret => @secret, :oauth_token => @user.oauth_token, :oauth_token_secret => @user.oauth_secret)
 		client.text("sheerhippo.tumblr.com", :state => "draft", :body => "test")
+		redirect_to "http://www.tumblr.com/blog/sheerhippo/drafts"
 		# url = "api.tumblr.com/v2/blog/sheerhippo.tumblr.com/post"
 		# @user = Tumblr.find_by_user_id(5)
 		# method = :post
