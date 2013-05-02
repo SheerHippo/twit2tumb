@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.13'
 gem 'oauth', '0.4.7'
 gem 'bcrypt-ruby', '3.0.1'
-gem 'tumblr_client'
+gem 'tumblr_client', '0.7.1'
 
 
 group :development, :test do
