@@ -11,12 +11,20 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130429185605) do
+ActiveRecord::Schema.define(:version => 20130503170624) do
 
   create_table "tumblogs", :force => true do |t|
     t.integer  "user_id"
     t.string   "oauth_token"
     t.string   "oauth_secret"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  create_table "tweets", :force => true do |t|
+    t.string   "oauth_secret"
+    t.string   "oauth_token"
+    t.integer  "user_id"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
   end
