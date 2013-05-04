@@ -6,7 +6,7 @@ class TweetsController < ApplicationController
 	@secret   = "BUfNXBwl7WpqJPCv0sebKOuilQGhRvfJQf6ec3E6GyI"
 	@callback = "http://pure-hamlet-3918.herokuapp.com/twitter/oauth/callback"
 
-	@base_url 			 = "https://api.twitter.com"
+	@base_url 			 = "http://api.twitter.com"
 	@request_token_url   = "/oauth/request_token"
 	@access_token_url 	 = "/oauth/access_token"
 	@authorize_token_url = "/oauth/authorize"
